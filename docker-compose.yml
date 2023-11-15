@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   mysqldb:
-    image: mysql:5.7
+    image: mysql
     restart: unless-stopped
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: yes
@@ -15,9 +15,6 @@ services:
   app-timesheet:
     depends_on:
       - mysqldb
-    build:
-      context: .
-      dockerfile: Dockerfile
     image: asma251/devops_project:2.1
     restart: on-failure
     ports:
