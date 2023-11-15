@@ -23,3 +23,5 @@ services:
       - projectnetwork
 networks:
   projectnetwork:
+volumes:
+  db:
