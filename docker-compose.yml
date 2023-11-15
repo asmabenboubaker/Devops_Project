@@ -13,7 +13,7 @@ services:
   app-timesheet:
     depends_on:
       - mysqldb
-    image: asma251/devops_project
+    image: asma251/devops_project:2.1
     restart: on-failure
     ports:
       - 8089:8089
