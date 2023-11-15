@@ -1,25 +1,13 @@
 version: "3.3"
 services:
-  mysqldb:
-    image: mysql:5.7
-    restart: unless-stopped
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=devops
-    ports:
-      - 3306:3306
-    volumes:
-      - db:/var/lib/mysql
-  app-timesheet:
+  web:
     depends_on:
       - mysqldb
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     image: asma251/devops_project:2.1
     restart: on-failure
     ports:
-      - 8089:8089
+      - "8089:8089"
     environment:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url" : "jdbc:mysql://localhost:3306/devops?createDatabaseIfNotExist=true",
@@ -30,5 +18,13 @@ services:
       }'
     stdin_open: true
     tty: true
-volumes:
-  db:
+  mysqldb:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=devops
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
