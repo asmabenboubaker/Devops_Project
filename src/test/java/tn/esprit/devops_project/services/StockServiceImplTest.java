@@ -36,14 +36,13 @@ class StockServiceImplTest {
 
         List<Stock> updatedStocks = stockService.retrieveAllStock();
 
-
     }
     @Test
     void retrieveStock() {
 
         Mockito.when(stockRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(s));
         Stock s1=stockService.retrieveStock(1L);
-        Assertions.assertNotNull(1L);
+        Assertions.assertNotNull(s1);
     }
 
 
